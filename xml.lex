@@ -42,12 +42,36 @@ TAG_SIGNO_EXCLAMACION <!.*>
 
 %%
 
-{VERSION} {return V;}
-{BLANCO} { }
-{CONTENIDO} {printf("CONTENIDO: %s\n", yytext); return C;}
-{ABRE_TAG} {printf("ABRE_TAG: %s\n", yytext); return AT;}
-{CIERRA_TAG} {printf("CIERRA_TAG: %s\n", yytext); return CT;}
-{TAG_VACIO} {printf("TAG_VACIO: %s\n", yytext); return TV;}
-. {printf("SIMBOLO DESCONOCIDO: %s\n", yytext);} // cualquier otra wea...
+{BLANCO} {
+	/* Se ignora el whitespace */
+}
+
+{VERSION} {
+	return V;
+}
+
+{CONTENIDO} {
+	printf("CONTENIDO: %s\n", yytext);
+	return C;
+}
+
+{TAG_VACIO} {
+	printf("TAG_VACIO: %s\n", yytext);
+	return TV;
+}
+
+{ABRE_TAG} {
+	printf("ABRE_TAG: %s\n", yytext);
+	return AT;
+}
+
+{CIERRA_TAG} {
+	printf("CIERRA_TAG: %s\n", yytext);
+	return CT;
+}
+
+. {
+	printf("SIMBOLO DESCONOCIDO: %s\n", yytext);
+} // cualquier otra wea...
 
 %%
