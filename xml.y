@@ -11,6 +11,7 @@ int altura = 0;
 int hermanos = 0;
 
 %}
+
 /* DEFINICION TOKENS */
 %token TV
 %token AT
@@ -18,9 +19,9 @@ int hermanos = 0;
 %token C
 %token V
 %token E
-/*%token B*/
 
 %start Documento
+
 %%
 /* GRAMATICA */
 
@@ -36,20 +37,6 @@ Documento:
     }
 ;
 
-/*VariosArboles:*/
-    /* epsilon */ /*{
-    printf("epsilon\n");*/
-    /*}
-    | VariosArboles Arbol {
-        hermanos++;
-        printf("VariosArboles Arbol, hermanos: %d\n", hermanos);
-    }
-    | Arbol {
-        hermanos++;
-        printf("Arbol, hermanos: %d\n", hermanos);
-    }
-;*/
-
 Arbol:
     Arbol Arbol {
         printf("Arbol Arbol\n");
@@ -60,14 +47,6 @@ Arbol:
     | Hoja {
         printf("Hoja\n");
     }
-    /*| AT C CT {
-        hojas++;
-        printf("AT C CT\n");
-    }
-    | TV {
-        hojas++;
-        printf("TV\n");
-    }*/
 ;
 
 Hoja:
@@ -99,5 +78,4 @@ int main(int argc, char* argv[]) {
     else {
         fprintf(stderr, "Errors found.\n");
     }
-    /*fprintf(stderr, "hojas: %d\n", hojas);*/
 }

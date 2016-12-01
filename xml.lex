@@ -51,6 +51,3 @@ TAG_SIGNO_EXCLAMACION <!.*>
 . {printf("SIMBOLO DESCONOCIDO: %s\n", yytext);} // cualquier otra wea...
 
 %%
-
-/*
- */
