@@ -13,50 +13,56 @@ int hermanos = 0;
 %}
 
 /* DEFINICION TOKENS */
-%token TV
-%token AT
-%token CT
-%token C
-%token V
-%token E
+%token TV // tag vacio
+%token AT // abre tag
+%token CT // cierra tag
+%token C // contenido tag
+%token TI // tag interrogacion
 
 %start Documento
 
 %%
 /* GRAMATICA */
-
 Documento:
-    V {
-        printf("V\n");
+    Encabezado {
+        fprintf(stderr, "Encabeza3\n");
     }
-    | V Arbol {
-        printf("V Arbol\n");
-    }
-    | Arbol {
-        printf("Arbol\n");
+    | Encabezado Arbol {
+        fprintf(stderr, "Encabezado Arbol\n");
     }
 ;
 
+Encabezado:
+    Encabezado TI {
+        fprintf(stderr, "Encabezado TI\n");
+    }
+    | TI {
+        fprintf(stderr, "TI\n");
+    }
+
 Arbol:
     Arbol Arbol {
-        printf("Arbol Arbol\n");
+        fprintf(stderr, "Arbol Arbol\n");
     }
     | AT Arbol CT {
-        printf("AT Arbol CT\n");
+        fprintf(stderr, "AT Arbol CT\n");
     }
     | Hoja {
-        printf("Hoja\n");
+        fprintf(stderr, "Hoja\n");
     }
 ;
 
 Hoja:
-    AT C CT {
+    /*epsilon*/ {
+
+    }
+    | AT C CT {
         hojas++;
-        printf("AT C CT\n");
+        fprintf(stderr, "AT C CT\n");
     }
     | TV {
         hojas++;
-        printf("TV\n");
+        fprintf(stderr, "TV\n");
     }
 ;
 
